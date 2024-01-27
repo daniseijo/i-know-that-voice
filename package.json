@@ -22,6 +22,7 @@
     "cheerio": "1.0.0-rc.12",
     "crawlee": "^3.7.3",
     "lucide-react": "^0.323.0",
+    "cmdk": "^0.2.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
