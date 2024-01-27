@@ -28,7 +28,7 @@ export function MovieCommandItem({ className, movie }: MovieCommandItemProps) {
         </div>
       )}
       <div className="ml-2">
-        <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">{movie.title}</h3>
+        <h3 className="scroll-m-20 text-lg font-semibold tracking-tight line-clamp-2">{movie.title}</h3>
         <p className="text-sm text-muted-foreground">{movie.releaseDate?.getFullYear()}</p>
         <p className="text-sm text-muted-foreground line-clamp-1">{trimParagraph(movie.overview, 200)}</p>
       </div>
