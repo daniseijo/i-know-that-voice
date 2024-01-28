@@ -6,12 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function trimParagraph(text: string, maxCharacters: number, ending = '...') {
+  if (text.length <= maxCharacters) return text
+
   let trimmedStr = text.slice(0, maxCharacters)
   trimmedStr = trimmedStr.slice(0, trimmedStr.lastIndexOf(' '))
 
-  if (trimmedStr.length < text.length) {
-    trimmedStr += ending
-  }
-
-  return trimmedStr
+  return trimmedStr + ending
 }

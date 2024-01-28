@@ -1,9 +1,6 @@
 'use server'
 
-import { Movie } from '@/types/movie'
-import { Poster } from '@/types/poster'
-import { MovieDto } from '@/types/tmdb/movie-dto'
-import { ResponseDto } from '@/types/tmdb/response-dto'
+import { Movie, MovieDto, Poster, ResponseDto } from '@/types'
 import wretch from 'wretch'
 import { queryStringAddon } from 'wretch/addons'
 
