@@ -3,7 +3,7 @@
 import { getMovies } from '@/app/actions/get-movies'
 
 import useSWR from 'swr'
-import { MovieCommandItem } from './components/movie-command-item'
+import { MovieSearchFragment } from './movie-search-fragment'
 import { CommandEmpty, CommandItem } from '@/components/ui/command'
 import { Loader2Icon } from 'lucide-react'
 
@@ -31,5 +31,14 @@ export function MovieCommandItems({ movieQuery }: MovieCommandItemsProps) {
 
   if (data && data.length === 0) return <CommandEmpty>No results found.</CommandEmpty>
 
-  if (data) return <>{data?.map((movie) => <MovieCommandItem key={movie.id} movie={movie} />)}</>
+  if (data)
+    return (
+      <>
+        {data?.map((movie) => (
+          <CommandItem key={movie.id}>
+            <MovieSearchFragment key={movie.id} movie={movie} />
+          </CommandItem>
+        ))}
+      </>
+    )
 }

@@ -1,7 +1,7 @@
 import { Poster } from '@/types'
 import Image from 'next/image'
-import { shimmerDataUrl } from './shimer'
 import { cn } from '@/lib/utils'
+import { shimmerDataUrl } from '@/lib/shimmer'
 import { FilmIcon } from 'lucide-react'
 
 export type PosterImageProps = {
