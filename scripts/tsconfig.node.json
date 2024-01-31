@@ -1,6 +1,13 @@
 {
+<<<<<<< HEAD
     "extends": "@tsconfig/node20/tsconfig.json",
     "ts-node": {
+=======
+    "extends": "@tsconfig/node18/tsconfig.json",
+    "ts-node": {
+      // It is faster to skip typechecking.
+      // Remove if you want ts-node to do typechecking.
+>>>>>>> 0f5c077 (feat: add initial eldoblaje crawler)
       "transpileOnly": true,
       "files": true
     },
