@@ -10,7 +10,8 @@
     "format": "prettier --write src",
     "pre-commit": "lint-staged",
     "prepare": "husky",
-    "extract-movie-database": "ts-node --project ./scripts/tsconfig.node.json ./scripts/extract-movie-database.ts"
+    "extract-movie-database": "ts-node --project ./scripts/tsconfig.node.json ./scripts/extract-movie-database.ts",
+    "test-eldoblaje-crawler": "ts-node --project ./scripts/tsconfig.node.json ./scripts/crawlers/eldoblaje/tests/index.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
