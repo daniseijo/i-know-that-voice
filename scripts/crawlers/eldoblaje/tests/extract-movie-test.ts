@@ -12,7 +12,8 @@ export async function extractMovieTest() {
       }
 
       const data = extractMoviePageData(crawlingContext)
-      console.info('Movie extractor result', data)
+      console.info('Movie extractor result')
+      console.dir(data, { depth: 1 })
     },
   })
 
