@@ -1,9 +1,5 @@
 import { log, CheerioCrawlingContext, CheerioCrawlerOptions } from 'crawlee'
 
-export function getByText(text: string): string {
-  return `*:contains("${text}")`
-}
-
 export const DEFAULT_CRAWLER_OPTIONS: CheerioCrawlerOptions = {
   minConcurrency: 10,
   maxConcurrency: 20,
