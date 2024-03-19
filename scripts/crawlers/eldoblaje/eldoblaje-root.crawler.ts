@@ -1,6 +1,6 @@
 import { Dataset, CheerioCrawler, log, CheerioCrawlingContext } from 'crawlee'
 import { extractResultPageData } from './eldoblaje-results.crawler'
-import { extractCastPageData } from './eldoblaje-cast.crawler'
+import { extractVoiceActorData } from './eldoblaje-voice-actor.crawler'
 import { extractMoviePageData } from './eldoblaje-movie.crawler'
 import { DEFAULT_CRAWLER_OPTIONS } from '../crawler.utils'
 
@@ -46,7 +46,7 @@ async function extractPageData(crawlingContext: CheerioCrawlingContext) {
     case '/datos/FichaPelicula.asp':
       return extractMoviePageData(crawlingContext)
     case '/datos/FichaActorDoblaje.asp':
-      return extractCastPageData(crawlingContext)
+      return extractVoiceActorData(crawlingContext)
     default:
       return undefined
   }
