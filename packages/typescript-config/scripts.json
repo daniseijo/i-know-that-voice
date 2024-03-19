@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Node.js scripts",
+    "extends": "@tsconfig/node20/tsconfig.json",
+    "ts-node": {
+        "transpileOnly": true,
+        "files": true
+    },
+}
+  
