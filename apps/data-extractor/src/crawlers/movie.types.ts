@@ -1,4 +1,5 @@
-export type Entity<Params> = {
+export type Entity<Params = {}> = {
+  // This id is temporary, once the data is stored in the database, it will be replaced by the database id
   id: string
 } & Params
 
@@ -11,8 +12,14 @@ export type DubbedMovie = Entity<{
   localizedTitle: string
   title: string
   language: SupportedLanguages
-  // TODO: Should we defined a more robust id for cast members?
   cast: Record<CastMember['id'], CastMember>
+}>
+
+export type VoiceActor = Entity<{
+  name: string
+  recurringVoiceOf: Array<CastMember['originalCast']>
+  sourceId: string
+  language: SupportedLanguages
 }>
 
 export type CastMember = Entity<{
