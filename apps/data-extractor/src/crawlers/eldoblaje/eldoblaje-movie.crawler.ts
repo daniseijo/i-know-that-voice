@@ -1,44 +1,27 @@
 import { CheerioCrawlingContext } from "crawlee";
 import { DubbedMovie } from "../movie.types";
-import { Cheerio, Element } from "cheerio";
+import { Cheerio, CheerioAPI, Element } from "cheerio";
 import { getVoiceActorId } from "./eldoblaje-voice-actor.crawler";
-import { formatActorName } from "./eldoblaje-common.utils";
+import { extractRowInfo, formatActorName } from "./eldoblaje-common.utils";
 
 export function extractMoviePageData(
-  crawlingContext: CheerioCrawlingContext,
+  crawlingContext: CheerioCrawlingContext
 ): DubbedMovie {
   const { request, $ } = crawlingContext;
   const url = new URL(request.url);
-  // Is this really the most clean way of doing this? Seems awkward
-  const extractInfo = (regexOrString: RegExp | string) =>
-    $("td.trebuchett")
-      .filter(function () {
-        if (typeof regexOrString === "string") {
-          return $(this).text().includes(regexOrString);
-        } else {
-          return regexOrString.test($(this).text());
-        }
-      })
-      .first()
-      .text()
-      .split(":")
-      .pop()
-      ?.trim();
 
-  const localizedTitle = extractInfo("Título:") || "";
-  const title = extractInfo(/Título\s+Original:/) || "";
+  const localizedTitle = extractInfo($, "Título:") || "";
+  const title = extractInfo($, /Título\s+Original:/) || "";
   const sourceId = url.searchParams.get("id");
   const cast = extractCast(crawlingContext);
 
   if ((!localizedTitle && !title) || !sourceId)
     throw new Error("Could not extract movie data");
 
-  // For now, this is unique enough
-  // TODO: Find a more robust id
-  const id = getMovieId(sourceId);
+  const tempId = getMovieId(sourceId);
 
   return {
-    id,
+    id: tempId,
     title,
     localizedTitle,
     language: "es-ES",
@@ -47,8 +30,13 @@ export function extractMoviePageData(
   };
 }
 
+// Is this really the most clean way of doing this? Seems awkward
+function extractInfo($: CheerioAPI, regexOrString: RegExp | string) {
+  return extractRowInfo($, "td.trebuchett", regexOrString);
+}
+
 function extractCast(
-  crawlingContext: CheerioCrawlingContext,
+  crawlingContext: CheerioCrawlingContext
 ): DubbedMovie["cast"] {
   const { $ } = crawlingContext;
   const headerRow = $('tr[bgcolor="#CCCCCC"]');
@@ -80,7 +68,7 @@ function extractCast(
 
 function extractVoiceActorId(
   el: Cheerio<Element>,
-  { enqueueLinks, request }: CheerioCrawlingContext,
+  { enqueueLinks, request }: CheerioCrawlingContext
 ) {
   const url = new URL(request.url);
   const voiceActorUrlPathname = el.find("a").attr("href");
