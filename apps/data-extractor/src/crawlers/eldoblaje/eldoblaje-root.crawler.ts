@@ -29,7 +29,7 @@ export async function eldoblajeCrawler() {
   });
 
   const urlsToCrawl = categoriesToSearch.map((category) =>
-    getInitialSearchUrls(category),
+    getInitialSearchUrls(category)
   );
   await crawler.run(urlsToCrawl);
 
