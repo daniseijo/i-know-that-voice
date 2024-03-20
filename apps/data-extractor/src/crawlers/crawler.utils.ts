@@ -8,6 +8,7 @@ export const DEFAULT_CRAWLER_OPTIONS: CheerioCrawlerOptions = {
   maxRequestsPerMinute: 250,
   retryOnBlocked: true,
   sameDomainDelaySecs: 0.5,
+  forceResponseEncoding: "iso-8859-1",
   failedRequestHandler({ request }: CheerioCrawlingContext) {
     log.error(`Request ${request.url} failed three times.`)
   },
