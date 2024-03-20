@@ -4,7 +4,7 @@ import { CheerioAPI } from "cheerio";
 import { VoiceActor } from "../movie.types";
 
 export function extractVoiceActorData(
-  crawlingContext: CheerioCrawlingContext
+  crawlingContext: CheerioCrawlingContext,
 ): VoiceActor {
   const { request, $ } = crawlingContext;
   const url = new URL(request.url);
@@ -39,7 +39,12 @@ export function extractRecurringVoice($: CheerioAPI) {
       return $(this).text().includes("Voces Habituales en Doblaje");
     })
     .first()
-    .parentsUntil("tbody")
+    // I didn't want to do this, but cheerio seems fairly limited
+    // I tried parentsUntil but it returns ALL parents that match
+    // I tried closest but it doesn't seem to traverse up the tree
+    .parent()
+    .parent()
+    .parent()
     .find("a");
 
   return recurringVoices.map((_, el) => $(el).text().trim()).toArray();
