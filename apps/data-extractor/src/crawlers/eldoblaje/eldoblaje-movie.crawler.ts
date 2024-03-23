@@ -5,7 +5,7 @@ import { getVoiceActorId } from "./eldoblaje-voice-actor.crawler";
 import { extractRowInfo, formatActorName } from "./eldoblaje-common.utils";
 
 export function extractMoviePageData(
-  crawlingContext: CheerioCrawlingContext
+  crawlingContext: CheerioCrawlingContext,
 ): DubbedMovie {
   const { request, $ } = crawlingContext;
   const url = new URL(request.url);
@@ -36,7 +36,7 @@ function extractInfo($: CheerioAPI, regexOrString: RegExp | string) {
 }
 
 function extractCast(
-  crawlingContext: CheerioCrawlingContext
+  crawlingContext: CheerioCrawlingContext,
 ): DubbedMovie["cast"] {
   const { $ } = crawlingContext;
   const headerRow = $('tr[bgcolor="#CCCCCC"]');
@@ -55,6 +55,10 @@ function extractCast(
     const voiceActorEl = tds.eq(1);
     const id = extractVoiceActorId(voiceActorEl, crawlingContext);
 
+    if (!id) {
+      return;
+    }
+
     cast[id] = {
       id,
       originalCast: formatActorName(originalCast),
@@ -68,7 +72,7 @@ function extractCast(
 
 function extractVoiceActorId(
   el: Cheerio<Element>,
-  { enqueueLinks, request }: CheerioCrawlingContext
+  { enqueueLinks, request }: CheerioCrawlingContext,
 ) {
   const url = new URL(request.url);
   const voiceActorUrlPathname = el.find("a").attr("href");
@@ -82,7 +86,7 @@ function extractVoiceActorId(
   const urlData = new URL(voiceActorUrl);
   const sourceId = urlData.searchParams.get("id") || "";
   if (!sourceId) {
-    throw new Error("Could not extract voice actor id");
+    return undefined;
   }
 
   return getVoiceActorId(sourceId);
