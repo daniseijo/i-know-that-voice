@@ -2,7 +2,7 @@ import { Dataset, CheerioCrawler, log, CheerioCrawlingContext } from 'crawlee'
 import { extractResultPageData } from './eldoblaje-results.crawler'
 import { extractVoiceActorData } from './eldoblaje-voice-actor.crawler'
 import { extractMoviePageData } from './eldoblaje-movie.crawler'
-import { DEFAULT_CRAWLER_OPTIONS } from '../crawler.utils'
+import { DEFAULT_CRAWLER_OPTIONS, wait } from '../crawler.utils'
 
 // ElDoblaje has results indexed by categories
 const categoriesToSearch = ['Pelicula', 'Serie', 'Animacion']
@@ -10,6 +10,18 @@ const categoriesToSearch = ['Pelicula', 'Serie', 'Animacion']
 export async function eldoblajeCrawler() {
   const crawler = new CheerioCrawler({
     ...DEFAULT_CRAWLER_OPTIONS,
+    // Specific configuration for ElDoblaje
+    forceResponseEncoding: 'iso-8859-1',
+    preNavigationHooks: [
+      async () => {
+        await wait(500)
+      },
+    ],
+    async errorHandler() {
+      // In general, eldoblaje.com can collapse a little, so we wait 3s before retrying
+      // TODO: Increase timeout on each error request (progressive backoff)
+      await wait(3000)
+    },
     async requestHandler(crawlingContext) {
       const { request } = crawlingContext
       log.info(`Processing ${request.url}...`)
