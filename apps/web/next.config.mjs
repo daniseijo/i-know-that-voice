@@ -3,11 +3,14 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'image.tmdb.org',
+        protocol: "https",
+        hostname: "image.tmdb.org",
       },
     ],
   },
-}
+  experimental: {
+    swcPlugins: [["@swc-jotai/react-refresh", {}]],
+  },
+};
 
-export default nextConfig
+export default nextConfig;
