@@ -1,9 +1,9 @@
 export function shimmerDataUrl(width: number, height: number): string {
-  return `svg+xml;base64,${toBase64(shimmer(width, height))}`;
+  return `svg+xml;base64,${toBase64(shimmer(width, height))}`
 }
 
 function shimmer(w: number, h: number) {
-  const fillColor = "hsl(210 40% 96.1%)"; // It is very expensive to get this color from the css variables so I put the --muted var value directly.
+  const fillColor = 'hsl(210 40% 96.1%)' // It is very expensive to get this color from the css variables so I put the --muted var value directly.
 
   return `<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect id="r" width="${w}" height="${h}" fill="${fillColor}" />
@@ -17,10 +17,8 @@ function shimmer(w: number, h: number) {
               dur="2s"
               repeatCount="indefinite"
             />
-          </svg>`;
+          </svg>`
 }
 
 const toBase64 = (str: string) =>
-  typeof window === "undefined"
-    ? Buffer.from(str).toString("base64")
-    : window.btoa(str);
+  typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str)

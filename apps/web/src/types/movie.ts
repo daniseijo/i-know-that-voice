@@ -1,9 +1,9 @@
-import { Poster } from "./poster";
+import { Poster } from './poster'
 
 export type Movie = {
-  id: number;
-  title: string;
-  overview: string;
-  releaseDate?: Date;
-  poster: Poster;
-};
+  id: number
+  title: string
+  overview: string
+  releaseDate?: Date
+  poster: Poster
+}

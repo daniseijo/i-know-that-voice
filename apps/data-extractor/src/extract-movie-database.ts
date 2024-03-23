@@ -1,7 +1,7 @@
-import { extractDubbedMovieData } from "./crawlers";
+import { extractDubbedMovieData } from './crawlers'
 
 async function main() {
-  await extractDubbedMovieData();
+  await extractDubbedMovieData()
 }
 
-main();
+main()

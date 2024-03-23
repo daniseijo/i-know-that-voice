@@ -1,1 +1,1 @@
-export * from "./eldoblaje-root.crawler";
+export * from './eldoblaje-root.crawler'
