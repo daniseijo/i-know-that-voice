@@ -6,6 +6,7 @@ const testMovieUrl =
 
 export async function extractMovieTest() {
   const crawler = new CheerioCrawler({
+    forceResponseEncoding: "iso-8859-1",
     async requestHandler(crawlingContext) {
       const urlData = new URL(crawlingContext.request.url);
       if (urlData.pathname !== "/datos/FichaPelicula.asp") {
