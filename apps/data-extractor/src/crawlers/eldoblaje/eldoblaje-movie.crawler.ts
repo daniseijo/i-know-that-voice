@@ -50,6 +50,10 @@ function extractCast(crawlingContext: CheerioCrawlingContext): DubbedMovie['cast
     const voiceActorEl = tds.eq(1)
     const id = extractVoiceActorId(voiceActorEl, crawlingContext)
 
+    if (!id) {
+      return
+    }
+
     cast[id] = {
       id,
       originalCast: formatActorName(originalCast),
@@ -74,7 +78,7 @@ function extractVoiceActorId(el: Cheerio<Element>, { enqueueLinks, request }: Ch
   const urlData = new URL(voiceActorUrl)
   const sourceId = urlData.searchParams.get('id') || ''
   if (!sourceId) {
-    throw new Error('Could not extract voice actor id')
+    return undefined
   }
 
   return getVoiceActorId(sourceId)
