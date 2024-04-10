@@ -1,7 +1,7 @@
 import { log, CheerioCrawlingContext, CheerioCrawlerOptions } from 'crawlee'
 
 export function wait(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 export const DEFAULT_CRAWLER_OPTIONS: CheerioCrawlerOptions = {
