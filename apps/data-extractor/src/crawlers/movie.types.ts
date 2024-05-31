@@ -5,7 +5,7 @@ export type Entity<Params = {}> = {
 
 export type SupportedLanguages = 'es-ES' | 'en-US' | 'jp-JP' | 'other'
 
-export type DubbedMovie = Entity<{
+export type DubbedMedia = Entity<{
   // Entity id from the extracted database
   sourceId: string
   // Probably localizedTitle can be used as a index for the movie
@@ -20,6 +20,7 @@ export type VoiceActor = Entity<{
   recurringVoiceOf: Array<CastMember['originalCast']>
   sourceId: string
   language: SupportedLanguages
+  tmbdId: string
 }>
 
 export type CastMember = Entity<{
@@ -27,3 +28,8 @@ export type CastMember = Entity<{
   voiceActor: string
   role: string
 }>
+
+export type ExtractedData = {
+  url: string
+  data: DubbedMedia | VoiceActor
+}

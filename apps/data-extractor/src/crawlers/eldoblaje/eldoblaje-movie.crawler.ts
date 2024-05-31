@@ -1,10 +1,10 @@
 import { CheerioCrawlingContext } from 'crawlee'
-import { DubbedMovie } from '../movie.types'
+import { DubbedMedia } from '../movie.types'
 import { Cheerio, CheerioAPI, Element } from 'cheerio'
 import { getVoiceActorId } from './eldoblaje-voice-actor.crawler'
 import { extractRowInfo, formatActorName } from './eldoblaje-common.utils'
 
-export function extractMoviePageData(crawlingContext: CheerioCrawlingContext): DubbedMovie {
+export function extractMoviePageData(crawlingContext: CheerioCrawlingContext): DubbedMedia {
   const { request, $ } = crawlingContext
   const url = new URL(request.url)
 
@@ -32,12 +32,12 @@ function extractInfo($: CheerioAPI, regexOrString: RegExp | string) {
   return extractRowInfo($, 'td.trebuchett', regexOrString)
 }
 
-function extractCast(crawlingContext: CheerioCrawlingContext): DubbedMovie['cast'] {
+function extractCast(crawlingContext: CheerioCrawlingContext): DubbedMedia['cast'] {
   const { $ } = crawlingContext
   const headerRow = $('tr[bgcolor="#CCCCCC"]')
   const castRows = headerRow.nextAll('tr')
 
-  const cast: DubbedMovie['cast'] = {}
+  const cast: DubbedMedia['cast'] = {}
 
   castRows.each(function () {
     const row = $(this)

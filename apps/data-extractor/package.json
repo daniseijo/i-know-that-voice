@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "extract-movie-database": "ts-node ./src/extract-movie-database.ts",
+    "extract-data": "ts-node ./src/extract-movie-database.ts",
+    "save-to-database": "ts-node ./src/map-crawler-data-to-database.ts",
     "test-eldoblaje-crawler": "ts-node ./src/crawlers/eldoblaje/tests/index.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.42.0",
     "cheerio": "1.0.0-rc.12",
     "crawlee": "^3.8.2"
   },
