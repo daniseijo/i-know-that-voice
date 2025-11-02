@@ -1,24 +1,26 @@
+// biome-ignore-all lint: This is just a prototype file
+
 'use client'
 
-import React, { useState } from 'react'
 import {
-  Search,
+  ArrowRight,
+  Award,
+  Calendar,
+  ChevronDown,
+  ChevronRight,
   Film,
-  User,
-  Mic,
   Home,
-  TrendingUp,
+  Menu,
+  Mic,
+  Search,
   Sparkles,
   Star,
-  Calendar,
-  Award,
-  ChevronRight,
-  ChevronDown,
-  X,
-  Menu,
-  ArrowRight,
+  TrendingUp,
+  User,
   Users,
+  X,
 } from 'lucide-react'
+import { useState } from 'react'
 
 // Datos de ejemplo
 const mockData = {
@@ -95,7 +97,7 @@ const mockData = {
 }
 
 // HOMEPAGE
-const Homepage = ({ onNavigate }) => {
+const Homepage = ({ onNavigate }: { onNavigate: (page: string, params?: any) => void }) => {
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
@@ -265,7 +267,7 @@ const Homepage = ({ onNavigate }) => {
 }
 
 // SEARCH PAGE
-const SearchPage = ({ onNavigate }) => {
+const SearchPage = ({ onNavigate }: { onNavigate: (page: string, params?: any) => void }) => {
   const [query, setQuery] = useState('')
   const [activeTab, setActiveTab] = useState('all')
 
@@ -382,8 +384,8 @@ const SearchPage = ({ onNavigate }) => {
 }
 
 // MOVIE PAGE
-const MoviePage = ({ onNavigate }) => {
-  const [expandedActor, setExpandedActor] = useState(null)
+const MoviePage = ({ onNavigate }: { onNavigate: (page: string, params?: any) => void }) => {
+  const [expandedActor, setExpandedActor] = useState<any>(null)
   const movie = mockData.movieDetail
 
   return (
@@ -472,7 +474,7 @@ const MoviePage = ({ onNavigate }) => {
 
 // VOICE ACTOR PAGE
 const VoiceActorPage = () => {
-  const [expandedActor, setExpandedActor] = useState(null)
+  const [expandedActor, setExpandedActor] = useState<any>(null)
   const profile = mockData.voiceActorProfile
 
   return (
@@ -571,7 +573,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const navigate = (page) => {
+  const navigate = (page: string) => {
     setCurrentPage(page)
     setMobileMenuOpen(false)
     window.scrollTo(0, 0)

@@ -1,7 +1,9 @@
+// biome-ignore-all lint: This is just a prototype file
+
 'use client'
 
-import React, { useState } from 'react'
-import { User, Film, Mic, TrendingUp, Calendar, Star, ChevronDown } from 'lucide-react'
+import { Calendar, ChevronDown, Film, Mic, Star, TrendingUp, User } from 'lucide-react'
+import { useState } from 'react'
 
 // Datos de ejemplo
 const voiceActorData = {
@@ -67,7 +69,7 @@ const voiceActorData = {
 
 // Concepto 1: Agrupado por Actor Original
 const ProfileConcept1 = () => {
-  const [expandedActor, setExpandedActor] = useState(null)
+  const [expandedActor, setExpandedActor] = useState<any>(null)
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -187,7 +189,7 @@ const ProfileConcept1 = () => {
 // Concepto 2: Vista de Timeline/Cronológica
 const ProfileConcept2 = () => {
   const [groupBy, setGroupBy] = useState('actor') // 'actor' o 'year'
-  const [selectedActor, setSelectedActor] = useState(voiceActorData.mainActors[0].id)
+  const [selectedActor, setSelectedActor] = useState(voiceActorData.mainActors[0]?.id)
 
   const allMovies = voiceActorData.mainActors
     .flatMap((actor) => actor.movies.map((m) => ({ ...m, actor: actor.name, actorId: actor.id })))
@@ -431,9 +433,9 @@ const App = () => {
     },
   ]
 
-  const ActiveComponent = concepts.find((c) => c.id === activeConcept).component
-  const activeName = concepts.find((c) => c.id === activeConcept).name
-  const activeDesc = concepts.find((c) => c.id === activeConcept).desc
+  const ActiveComponent = concepts.find((c) => c.id === activeConcept)?.component
+  const activeName = concepts.find((c) => c.id === activeConcept)?.name
+  const activeDesc = concepts.find((c) => c.id === activeConcept)?.desc
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -468,9 +470,7 @@ const App = () => {
           </div>
         </div>
 
-        <div className="bg-gray-100 rounded-xl p-6">
-          <ActiveComponent />
-        </div>
+        <div className="bg-gray-100 rounded-xl p-6">{ActiveComponent && <ActiveComponent />}</div>
 
         <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
           <p className="text-sm text-purple-900">

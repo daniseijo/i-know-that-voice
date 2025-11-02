@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This is just a prototype file
+
 'use client'
 
 import { ChevronRight, Mic, Star, User } from 'lucide-react'
@@ -69,7 +71,7 @@ const mockData = {
 }
 
 const Interface1_Integrated = () => {
-  const [selectedVoiceActor, setSelectedVoiceActor] = useState(null)
+  const [selectedVoiceActor, setSelectedVoiceActor] = useState<any>(null)
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -129,39 +131,49 @@ const Interface1_Integrated = () => {
               />
             </div>
 
-            {selectedVoiceActor === actor.voiceActorId && mockData.voiceActorDetails[actor.voiceActorId] && (
-              <div className="border-t border-gray-200 bg-purple-50 p-4">
-                <div className="mb-3">
-                  <p className="text-sm font-semibold text-gray-700 mb-2">Voz habitual de:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {mockData.voiceActorDetails[actor.voiceActorId].regularVoiceFor.map((name, i) => (
-                      <span
-                        key={i}
-                        className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border border-gray-200"
-                      >
-                        {name}
-                      </span>
-                    ))}
+            {selectedVoiceActor === actor.voiceActorId &&
+              mockData.voiceActorDetails[actor.voiceActorId as keyof typeof mockData.voiceActorDetails] && (
+                <div className="border-t border-gray-200 bg-purple-50 p-4">
+                  <div className="mb-3">
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Voz habitual de:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {mockData.voiceActorDetails[
+                        actor.voiceActorId as keyof typeof mockData.voiceActorDetails
+                      ].regularVoiceFor.map((name, i) => (
+                        <span
+                          key={i}
+                          className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 border border-gray-200"
+                        >
+                          {name}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-700 mb-2">
-                    Trabajos recientes ({mockData.voiceActorDetails[actor.voiceActorId].totalWorks} totales):
-                  </p>
-                  <div className="space-y-2">
-                    {mockData.voiceActorDetails[actor.voiceActorId].recentWorks.map((work, i) => (
-                      <div key={i} className="bg-white rounded p-2 text-sm flex items-center justify-between">
-                        <div>
-                          <span className="font-medium text-gray-900">{work.title}</span>
-                          <span className="text-gray-500 ml-2">({work.year})</span>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">
+                      Trabajos recientes (
+                      {
+                        mockData.voiceActorDetails[actor.voiceActorId as keyof typeof mockData.voiceActorDetails]
+                          .totalWorks
+                      }{' '}
+                      totales):
+                    </p>
+                    <div className="space-y-2">
+                      {mockData.voiceActorDetails[
+                        actor.voiceActorId as keyof typeof mockData.voiceActorDetails
+                      ].recentWorks.map((work, i) => (
+                        <div key={i} className="bg-white rounded p-2 text-sm flex items-center justify-between">
+                          <div>
+                            <span className="font-medium text-gray-900">{work.title}</span>
+                            <span className="text-gray-500 ml-2">({work.year})</span>
+                          </div>
+                          <span className="text-gray-500 text-xs">{work.character}</span>
                         </div>
-                        <span className="text-gray-500 text-xs">{work.character}</span>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         ))}
       </div>
@@ -170,7 +182,7 @@ const Interface1_Integrated = () => {
 }
 
 const Interface2_Cards = () => {
-  const [selectedActor, setSelectedActor] = useState(null)
+  const [selectedActor, setSelectedActor] = useState<any>(null)
 
   return (
     <div className="max-w-6xl mx-auto p-4">
@@ -216,33 +228,43 @@ const Interface2_Cards = () => {
               </div>
             </div>
 
-            {selectedActor === actor.id && mockData.voiceActorDetails[actor.voiceActorId] && (
-              <div className="border-t border-gray-200 p-4 bg-purple-50">
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-xs font-semibold text-gray-600 mb-1">VOZ HABITUAL DE</p>
-                    <div className="flex flex-wrap gap-1">
-                      {mockData.voiceActorDetails[actor.voiceActorId].regularVoiceFor.map((name, i) => (
-                        <span key={i} className="bg-white px-2 py-1 rounded text-xs text-gray-700">
-                          {name}
-                        </span>
-                      ))}
+            {selectedActor === actor.id &&
+              mockData.voiceActorDetails[actor.voiceActorId as keyof typeof mockData.voiceActorDetails] && (
+                <div className="border-t border-gray-200 p-4 bg-purple-50">
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs font-semibold text-gray-600 mb-1">VOZ HABITUAL DE</p>
+                      <div className="flex flex-wrap gap-1">
+                        {mockData.voiceActorDetails[
+                          actor.voiceActorId as keyof typeof mockData.voiceActorDetails
+                        ].regularVoiceFor.map((name, i) => (
+                          <span key={i} className="bg-white px-2 py-1 rounded text-xs text-gray-700">
+                            {name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-gray-600 mb-1">OTROS TRABAJOS</p>
+                      {mockData.voiceActorDetails[
+                        actor.voiceActorId as keyof typeof mockData.voiceActorDetails
+                      ].recentWorks
+                        .slice(0, 2)
+                        .map((work, i) => (
+                          <p key={i} className="text-sm text-gray-700">
+                            • {work.title} ({work.year})
+                          </p>
+                        ))}
+                      <p className="text-xs text-purple-600 mt-1">
+                        +
+                        {mockData.voiceActorDetails[actor.voiceActorId as keyof typeof mockData.voiceActorDetails]
+                          .totalWorks - 2}{' '}
+                        más
+                      </p>
                     </div>
                   </div>
-                  <div>
-                    <p className="text-xs font-semibold text-gray-600 mb-1">OTROS TRABAJOS</p>
-                    {mockData.voiceActorDetails[actor.voiceActorId].recentWorks.slice(0, 2).map((work, i) => (
-                      <p key={i} className="text-sm text-gray-700">
-                        • {work.title} ({work.year})
-                      </p>
-                    ))}
-                    <p className="text-xs text-purple-600 mt-1">
-                      +{mockData.voiceActorDetails[actor.voiceActorId].totalWorks - 2} más
-                    </p>
-                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         ))}
       </div>
@@ -252,7 +274,7 @@ const Interface2_Cards = () => {
 
 const Interface3_Tabs = () => {
   const [view, setView] = useState('cast')
-  const [selectedVoice, setSelectedVoice] = useState(null)
+  const [selectedVoice, setSelectedVoice] = useState<any>(null)
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -342,26 +364,33 @@ const Interface3_Tabs = () => {
                     />
                   </div>
 
-                  {selectedVoice === actor.voiceActorId && mockData.voiceActorDetails[actor.voiceActorId] && (
-                    <div className="mt-3 pt-3 border-t border-purple-200">
-                      <div className="space-y-2">
-                        <div>
-                          <p className="text-xs font-semibold text-purple-700 mb-1">Voz habitual de:</p>
-                          <p className="text-sm text-gray-700">
-                            {mockData.voiceActorDetails[actor.voiceActorId].regularVoiceFor.join(', ')}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold text-purple-700 mb-1">Trabajos recientes:</p>
-                          {mockData.voiceActorDetails[actor.voiceActorId].recentWorks.slice(0, 3).map((work, i) => (
-                            <p key={i} className="text-sm text-gray-700">
-                              • {work.title} ({work.year})
+                  {selectedVoice === actor.voiceActorId &&
+                    mockData.voiceActorDetails[actor.voiceActorId as keyof typeof mockData.voiceActorDetails] && (
+                      <div className="mt-3 pt-3 border-t border-purple-200">
+                        <div className="space-y-2">
+                          <div>
+                            <p className="text-xs font-semibold text-purple-700 mb-1">Voz habitual de:</p>
+                            <p className="text-sm text-gray-700">
+                              {mockData.voiceActorDetails[
+                                actor.voiceActorId as keyof typeof mockData.voiceActorDetails
+                              ].regularVoiceFor.join(', ')}
                             </p>
-                          ))}
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-purple-700 mb-1">Trabajos recientes:</p>
+                            {mockData.voiceActorDetails[
+                              actor.voiceActorId as keyof typeof mockData.voiceActorDetails
+                            ].recentWorks
+                              .slice(0, 3)
+                              .map((work, i) => (
+                                <p key={i} className="text-sm text-gray-700">
+                                  • {work.title} ({work.year})
+                                </p>
+                              ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               ))}
             </div>

@@ -1,23 +1,25 @@
+// biome-ignore-all lint: This is just a prototype file
+
 'use client'
 
-import React, { useState } from 'react'
 import {
-  Star,
-  Calendar,
-  Globe,
-  Film,
-  Mic,
-  User,
-  Building2,
-  Users,
-  Briefcase,
-  PlayCircle,
   Award,
-  TrendingUp,
+  Briefcase,
+  Building2,
+  Calendar,
+  Film,
+  Globe,
   Info,
-  Volume2,
+  Mic,
+  PlayCircle,
+  Star,
   Subtitles,
+  TrendingUp,
+  User,
+  Users,
+  Volume2,
 } from 'lucide-react'
+import { useState } from 'react'
 
 const movieData = {
   // Datos TMDB/IMDB
@@ -169,7 +171,7 @@ const movieData = {
 
 const MovieCompletePage = () => {
   const [activeTab, setActiveTab] = useState('overview')
-  const [expandedActor, setExpandedActor] = useState(null)
+  const [expandedActor, setExpandedActor] = useState<any>(null)
   const [showAllCast, setShowAllCast] = useState(false)
 
   const displayedCast = showAllCast ? movieData.dubbing.cast : movieData.dubbing.cast.slice(0, 6)
@@ -426,33 +428,44 @@ const MovieCompletePage = () => {
                     </div>
                   </div>
 
-                  {expandedActor === actor.id && movieData.voiceActorDetails[actor.voiceActorId] && (
-                    <div className="border-t border-gray-200 p-4 bg-purple-50">
-                      <div className="space-y-3">
-                        <div>
-                          <p className="text-xs font-semibold text-gray-600 mb-1">VOZ HABITUAL DE</p>
-                          <div className="flex flex-wrap gap-1">
-                            {movieData.voiceActorDetails[actor.voiceActorId]?.regularVoiceFor.map((name, i) => (
-                              <span key={i} className="bg-white px-2 py-1 rounded text-xs text-gray-700">
-                                {name}
-                              </span>
-                            ))}
+                  {expandedActor === actor.id &&
+                    movieData.voiceActorDetails[actor.voiceActorId as keyof typeof movieData.voiceActorDetails] && (
+                      <div className="border-t border-gray-200 p-4 bg-purple-50">
+                        <div className="space-y-3">
+                          <div>
+                            <p className="text-xs font-semibold text-gray-600 mb-1">VOZ HABITUAL DE</p>
+                            <div className="flex flex-wrap gap-1">
+                              {movieData.voiceActorDetails[
+                                actor.voiceActorId as keyof typeof movieData.voiceActorDetails
+                              ]?.regularVoiceFor.map((name, i) => (
+                                <span key={i} className="bg-white px-2 py-1 rounded text-xs text-gray-700">
+                                  {name}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold text-gray-600 mb-1">OTROS TRABAJOS</p>
+                            {movieData.voiceActorDetails[
+                              actor.voiceActorId as keyof typeof movieData.voiceActorDetails
+                            ]?.recentWorks
+                              .slice(0, 2)
+                              .map((work, i) => (
+                                <p key={i} className="text-sm text-gray-700">
+                                  • {work.title} ({work.year})
+                                </p>
+                              ))}
+                            <p className="text-xs text-purple-600 mt-1">
+                              +
+                              {(movieData.voiceActorDetails[
+                                actor.voiceActorId as keyof typeof movieData.voiceActorDetails
+                              ]?.totalWorks ?? 0) - 2}{' '}
+                              más
+                            </p>
                           </div>
                         </div>
-                        <div>
-                          <p className="text-xs font-semibold text-gray-600 mb-1">OTROS TRABAJOS</p>
-                          {movieData.voiceActorDetails[actor.voiceActorId]?.recentWorks.slice(0, 2).map((work, i) => (
-                            <p key={i} className="text-sm text-gray-700">
-                              • {work.title} ({work.year})
-                            </p>
-                          ))}
-                          <p className="text-xs text-purple-600 mt-1">
-                            +{(movieData.voiceActorDetails[actor.voiceActorId]?.totalWorks ?? 0) - 2} más
-                          </p>
-                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               ))}
             </div>
