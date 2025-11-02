@@ -6,7 +6,7 @@ create type "public"."Language" as enum ('en', 'es', 'fr', 'de', 'it', 'ja', 'pt
 
 
   create table "public"."Actor" (
-    "id" integer not null,
+    "id" uuid not null default gen_random_uuid(),
     "name" character varying,
     "profile_path" character varying
       );
@@ -14,17 +14,17 @@ create type "public"."Language" as enum ('en', 'es', 'fr', 'de', 'it', 'ja', 'pt
 
 
   create table "public"."Character" (
-    "id" integer not null,
+    "id" uuid not null default gen_random_uuid(),
     "name_in_media" character varying,
-    "movie_id" integer,
-    "original_actor_id" integer
+    "movie_id" uuid,
+    "original_actor_id" uuid
       );
 
 
 
   create table "public"."Crawl_Status" (
-    "id" integer not null,
-    "entity_id" integer,
+    "id" uuid not null default gen_random_uuid(),
+    "entity_id" uuid,
     "entity_type" character varying,
     "state" character varying,
     "source_url" character varying,
@@ -36,7 +36,7 @@ create type "public"."Language" as enum ('en', 'es', 'fr', 'de', 'it', 'ja', 'pt
 
 
   create table "public"."Dub_Actor" (
-    "id" integer not null,
+    "id" uuid not null default gen_random_uuid(),
     "name" character varying,
     "profile_path" character varying,
     "status" character varying,
@@ -50,15 +50,15 @@ create type "public"."Language" as enum ('en', 'es', 'fr', 'de', 'it', 'ja', 'pt
 
 
   create table "public"."Dubbing_Cast" (
-    "id" integer not null,
-    "character_id" integer,
-    "dub_actor_id" integer
+    "id" uuid not null default gen_random_uuid(),
+    "character_id" uuid,
+    "dub_actor_id" uuid
       );
 
 
 
   create table "public"."Movie" (
-    "id" integer not null,
+    "id" uuid not null default gen_random_uuid(),
     "title" character varying,
     "original_title" character varying,
     "original_language" public."Language",
@@ -80,22 +80,22 @@ create type "public"."Language" as enum ('en', 'es', 'fr', 'de', 'it', 'ja', 'pt
 
 
   create table "public"."Movie_Staff" (
-    "movie_id" integer not null,
-    "staff_id" integer not null,
+    "movie_id" uuid not null,
+    "staff_id" uuid not null,
     "role" character varying not null
       );
 
 
 
   create table "public"."Regular_Voice_Assignments" (
-    "dub_actor_id" integer not null,
-    "original_actor_id" integer not null
+    "dub_actor_id" uuid not null,
+    "original_actor_id" uuid not null
       );
 
 
 
   create table "public"."Staff" (
-    "id" integer not null,
+    "id" uuid not null default gen_random_uuid(),
     "name" character varying,
     "profile_path" character varying
       );

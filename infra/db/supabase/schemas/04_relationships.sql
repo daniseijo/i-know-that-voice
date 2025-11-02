@@ -1,8 +1,8 @@
 -- Relationship tables and foreign key constraints
 
 CREATE TABLE "Movie_Staff" (
-  "movie_id" integer,
-  "staff_id" integer,
+  "movie_id" uuid,
+  "staff_id" uuid,
   "role" varchar,
   PRIMARY KEY ("movie_id", "staff_id", "role")
 );
@@ -10,10 +10,10 @@ CREATE TABLE "Movie_Staff" (
 COMMENT ON COLUMN "Movie_Staff"."role" IS 'e.g., "Director", "Writer", "Producer"';
 
 CREATE TABLE "Character" (
-  "id" integer PRIMARY KEY,
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "name_in_media" varchar,
-  "movie_id" integer,
-  "original_actor_id" integer
+  "movie_id" uuid,
+  "original_actor_id" uuid
 );
 
 COMMENT ON TABLE "Character" IS 'A character must belong to either a movie or a TV series, but not both.';

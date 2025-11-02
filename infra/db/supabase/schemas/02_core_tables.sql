@@ -1,8 +1,8 @@
 -- Core tables: Crawl_Status, Movie, Actor, Staff
 
 CREATE TABLE "Crawl_Status" (
-  "id" integer PRIMARY KEY,
-  "entity_id" integer,
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  "entity_id" uuid,
   "entity_type" varchar,
   "state" varchar,
   "source_url" varchar UNIQUE,
@@ -15,7 +15,7 @@ COMMENT ON COLUMN "Crawl_Status"."entity_type" IS 'e.g., "movie", "tv_series", "
 COMMENT ON COLUMN "Crawl_Status"."source_url" IS 'URL from eldoblaje.com';
 
 CREATE TABLE "Movie" (
-  "id" integer PRIMARY KEY,
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "title" varchar,
   "original_title" varchar,
   "original_language" "Language",
@@ -35,13 +35,13 @@ CREATE TABLE "Movie" (
 );
 
 CREATE TABLE "Actor" (
-  "id" integer PRIMARY KEY,
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "name" varchar,
   "profile_path" varchar
 );
 
 CREATE TABLE "Staff" (
-  "id" integer PRIMARY KEY,
+  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   "name" varchar,
   "profile_path" varchar
 );
