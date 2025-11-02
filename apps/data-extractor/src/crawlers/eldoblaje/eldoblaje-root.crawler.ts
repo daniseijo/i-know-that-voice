@@ -1,8 +1,8 @@
-import { Dataset, CheerioCrawler, log, CheerioCrawlingContext } from 'crawlee'
+import { CheerioCrawler, type CheerioCrawlingContext, Dataset, log } from 'crawlee'
+import { DEFAULT_CRAWLER_OPTIONS, wait } from '../crawler.utils'
+import { extractMoviePageData } from './eldoblaje-movie.crawler'
 import { extractResultPageData } from './eldoblaje-results.crawler'
 import { extractVoiceActorData } from './eldoblaje-voice-actor.crawler'
-import { extractMoviePageData } from './eldoblaje-movie.crawler'
-import { DEFAULT_CRAWLER_OPTIONS, wait } from '../crawler.utils'
 
 // ElDoblaje has results indexed by categories
 const categoriesToSearch = ['Pelicula', 'Serie', 'Animacion']

@@ -1,4 +1,4 @@
-import { log, CheerioCrawlingContext, CheerioCrawlerOptions } from 'crawlee'
+import { type CheerioCrawlerOptions, type CheerioCrawlingContext, log } from 'crawlee'
 
 export function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))

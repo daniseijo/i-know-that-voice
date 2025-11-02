@@ -1,4 +1,4 @@
-import { CheerioAPI } from 'cheerio'
+import type { CheerioAPI } from 'cheerio'
 
 export function formatActorName(name: string): string {
   const formattedName = capitalizeWords(name)

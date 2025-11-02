@@ -1,4 +1,4 @@
-import { CheerioCrawlingContext } from 'crawlee'
+import type { CheerioCrawlingContext } from 'crawlee'
 
 const resultsPagesSiteMap = new Map<string, string[]>()
 

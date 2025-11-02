@@ -1,6 +1,6 @@
 import { PosterImage } from '@/components/poster-image'
 import { trimParagraph } from '@/lib/utils'
-import { Movie } from '@/types/movie'
+import type { Movie } from '@/types/movie'
 
 export type MovieSearchFragmentProps = {
   movie: Movie
