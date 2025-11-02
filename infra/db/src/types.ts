@@ -1,10 +1,4 @@
-export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[]
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 
 export type Database = {
   graphql_public: {
@@ -73,18 +67,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "Character_movie_id_fkey"
-            columns: ["movie_id"]
+            foreignKeyName: 'Character_movie_id_fkey'
+            columns: ['movie_id']
             isOneToOne: false
-            referencedRelation: "Movie"
-            referencedColumns: ["id"]
+            referencedRelation: 'Movie'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "Character_original_actor_id_fkey"
-            columns: ["original_actor_id"]
+            foreignKeyName: 'Character_original_actor_id_fkey'
+            columns: ['original_actor_id']
             isOneToOne: false
-            referencedRelation: "Actor"
-            referencedColumns: ["id"]
+            referencedRelation: 'Actor'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -175,18 +169,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "Dubbing_Cast_character_id_fkey"
-            columns: ["character_id"]
+            foreignKeyName: 'Dubbing_Cast_character_id_fkey'
+            columns: ['character_id']
             isOneToOne: false
-            referencedRelation: "Character"
-            referencedColumns: ["id"]
+            referencedRelation: 'Character'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "Dubbing_Cast_dub_actor_id_fkey"
-            columns: ["dub_actor_id"]
+            foreignKeyName: 'Dubbing_Cast_dub_actor_id_fkey'
+            columns: ['dub_actor_id']
             isOneToOne: false
-            referencedRelation: "Dub_Actor"
-            referencedColumns: ["id"]
+            referencedRelation: 'Dub_Actor'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -194,57 +188,57 @@ export type Database = {
         Row: {
           backdrop_path: string | null
           budget: number | null
-          genres: Database["public"]["Enums"]["Genre_Type"][] | null
+          genres: Database['public']['Enums']['Genre_Type'][] | null
           homepage_url: string | null
           id: string
           is_adult: boolean | null
-          original_language: Database["public"]["Enums"]["Language"] | null
+          original_language: Database['public']['Enums']['Language'] | null
           original_title: string | null
           overview: string | null
           poster_path: string | null
-          production_countries: Database["public"]["Enums"]["Country"][] | null
+          production_countries: Database['public']['Enums']['Country'][] | null
           release_date: string | null
           revenue: number | null
           runtime_minutes: number | null
-          spoken_languages: Database["public"]["Enums"]["Language"][] | null
+          spoken_languages: Database['public']['Enums']['Language'][] | null
           tagline: string | null
           title: string | null
         }
         Insert: {
           backdrop_path?: string | null
           budget?: number | null
-          genres?: Database["public"]["Enums"]["Genre_Type"][] | null
+          genres?: Database['public']['Enums']['Genre_Type'][] | null
           homepage_url?: string | null
           id?: string
           is_adult?: boolean | null
-          original_language?: Database["public"]["Enums"]["Language"] | null
+          original_language?: Database['public']['Enums']['Language'] | null
           original_title?: string | null
           overview?: string | null
           poster_path?: string | null
-          production_countries?: Database["public"]["Enums"]["Country"][] | null
+          production_countries?: Database['public']['Enums']['Country'][] | null
           release_date?: string | null
           revenue?: number | null
           runtime_minutes?: number | null
-          spoken_languages?: Database["public"]["Enums"]["Language"][] | null
+          spoken_languages?: Database['public']['Enums']['Language'][] | null
           tagline?: string | null
           title?: string | null
         }
         Update: {
           backdrop_path?: string | null
           budget?: number | null
-          genres?: Database["public"]["Enums"]["Genre_Type"][] | null
+          genres?: Database['public']['Enums']['Genre_Type'][] | null
           homepage_url?: string | null
           id?: string
           is_adult?: boolean | null
-          original_language?: Database["public"]["Enums"]["Language"] | null
+          original_language?: Database['public']['Enums']['Language'] | null
           original_title?: string | null
           overview?: string | null
           poster_path?: string | null
-          production_countries?: Database["public"]["Enums"]["Country"][] | null
+          production_countries?: Database['public']['Enums']['Country'][] | null
           release_date?: string | null
           revenue?: number | null
           runtime_minutes?: number | null
-          spoken_languages?: Database["public"]["Enums"]["Language"][] | null
+          spoken_languages?: Database['public']['Enums']['Language'][] | null
           tagline?: string | null
           title?: string | null
         }
@@ -268,18 +262,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "Movie_Staff_movie_id_fkey"
-            columns: ["movie_id"]
+            foreignKeyName: 'Movie_Staff_movie_id_fkey'
+            columns: ['movie_id']
             isOneToOne: false
-            referencedRelation: "Movie"
-            referencedColumns: ["id"]
+            referencedRelation: 'Movie'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "Movie_Staff_staff_id_fkey"
-            columns: ["staff_id"]
+            foreignKeyName: 'Movie_Staff_staff_id_fkey'
+            columns: ['staff_id']
             isOneToOne: false
-            referencedRelation: "Staff"
-            referencedColumns: ["id"]
+            referencedRelation: 'Staff'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -298,18 +292,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "Regular_Voice_Assignments_dub_actor_id_fkey"
-            columns: ["dub_actor_id"]
+            foreignKeyName: 'Regular_Voice_Assignments_dub_actor_id_fkey'
+            columns: ['dub_actor_id']
             isOneToOne: false
-            referencedRelation: "Dub_Actor"
-            referencedColumns: ["id"]
+            referencedRelation: 'Dub_Actor'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "Regular_Voice_Assignments_original_actor_id_fkey"
-            columns: ["original_actor_id"]
+            foreignKeyName: 'Regular_Voice_Assignments_original_actor_id_fkey'
+            columns: ['original_actor_id']
             isOneToOne: false
-            referencedRelation: "Actor"
-            referencedColumns: ["id"]
+            referencedRelation: 'Actor'
+            referencedColumns: ['id']
           },
         ]
       }
@@ -339,52 +333,28 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      Country:
-        | "US"
-        | "GB"
-        | "ES"
-        | "FR"
-        | "DE"
-        | "JP"
-        | "CA"
-        | "AU"
-        | "IT"
-        | "CN"
-        | "IN"
-        | "KR"
+      Country: 'US' | 'GB' | 'ES' | 'FR' | 'DE' | 'JP' | 'CA' | 'AU' | 'IT' | 'CN' | 'IN' | 'KR'
       Genre_Type:
-        | "Action"
-        | "Adventure"
-        | "Animation"
-        | "Comedy"
-        | "Crime"
-        | "Documentary"
-        | "Drama"
-        | "Family"
-        | "Fantasy"
-        | "History"
-        | "Horror"
-        | "Music"
-        | "Mystery"
-        | "Romance"
-        | "Science_Fiction"
-        | "TV_Movie"
-        | "Thriller"
-        | "War"
-        | "Western"
-      Language:
-        | "en"
-        | "es"
-        | "fr"
-        | "de"
-        | "it"
-        | "ja"
-        | "pt"
-        | "ru"
-        | "zh"
-        | "ko"
-        | "hi"
-        | "ar"
+        | 'Action'
+        | 'Adventure'
+        | 'Animation'
+        | 'Comedy'
+        | 'Crime'
+        | 'Documentary'
+        | 'Drama'
+        | 'Family'
+        | 'Fantasy'
+        | 'History'
+        | 'Horror'
+        | 'Music'
+        | 'Mystery'
+        | 'Romance'
+        | 'Science_Fiction'
+        | 'TV_Movie'
+        | 'Thriller'
+        | 'War'
+        | 'Western'
+      Language: 'en' | 'es' | 'fr' | 'de' | 'it' | 'ja' | 'pt' | 'ru' | 'zh' | 'ko' | 'hi' | 'ar'
     }
     CompositeTypes: {
       [_ in never]: never
@@ -392,33 +362,31 @@ export type Database = {
   }
 }
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+type DatabaseWithoutInternals = Omit<Database, '__InternalSupabase'>
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, 'public'>]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
-    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | keyof (DefaultSchema['Tables'] & DefaultSchema['Views'])
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])[TableName] extends {
       Row: infer R
     }
     ? R
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])
-    ? (DefaultSchema["Tables"] &
-        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema['Tables'] & DefaultSchema['Views'])
+    ? (DefaultSchema['Tables'] & DefaultSchema['Views'])[DefaultSchemaTableNameOrOptions] extends {
         Row: infer R
       }
       ? R
@@ -426,24 +394,22 @@ export type Tables<
     : never
 
 export type TablesInsert<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
+  DefaultSchemaTableNameOrOptions extends keyof DefaultSchema['Tables'] | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'][TableName] extends {
       Insert: infer I
     }
     ? I
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema['Tables']
+    ? DefaultSchema['Tables'][DefaultSchemaTableNameOrOptions] extends {
         Insert: infer I
       }
       ? I
@@ -451,24 +417,22 @@ export type TablesInsert<
     : never
 
 export type TablesUpdate<
-  DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
+  DefaultSchemaTableNameOrOptions extends keyof DefaultSchema['Tables'] | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables']
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'][TableName] extends {
       Update: infer U
     }
     ? U
     : never
-  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema['Tables']
+    ? DefaultSchema['Tables'][DefaultSchemaTableNameOrOptions] extends {
         Update: infer U
       }
       ? U
@@ -476,37 +440,35 @@ export type TablesUpdate<
     : never
 
 export type Enums<
-  DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
+  DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema['Enums'] | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions['schema']]['Enums']
     : never = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema['Enums']
+    ? DefaultSchema['Enums'][DefaultSchemaEnumNameOrOptions]
     : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof DefaultSchema["CompositeTypes"]
+    | keyof DefaultSchema['CompositeTypes']
     | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
-    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes']
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
-  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions['schema']]['CompositeTypes'][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema['CompositeTypes']
+    ? DefaultSchema['CompositeTypes'][PublicCompositeTypeNameOrOptions]
     : never
 
 export const Constants = {
@@ -515,56 +477,29 @@ export const Constants = {
   },
   public: {
     Enums: {
-      Country: [
-        "US",
-        "GB",
-        "ES",
-        "FR",
-        "DE",
-        "JP",
-        "CA",
-        "AU",
-        "IT",
-        "CN",
-        "IN",
-        "KR",
-      ],
+      Country: ['US', 'GB', 'ES', 'FR', 'DE', 'JP', 'CA', 'AU', 'IT', 'CN', 'IN', 'KR'],
       Genre_Type: [
-        "Action",
-        "Adventure",
-        "Animation",
-        "Comedy",
-        "Crime",
-        "Documentary",
-        "Drama",
-        "Family",
-        "Fantasy",
-        "History",
-        "Horror",
-        "Music",
-        "Mystery",
-        "Romance",
-        "Science_Fiction",
-        "TV_Movie",
-        "Thriller",
-        "War",
-        "Western",
+        'Action',
+        'Adventure',
+        'Animation',
+        'Comedy',
+        'Crime',
+        'Documentary',
+        'Drama',
+        'Family',
+        'Fantasy',
+        'History',
+        'Horror',
+        'Music',
+        'Mystery',
+        'Romance',
+        'Science_Fiction',
+        'TV_Movie',
+        'Thriller',
+        'War',
+        'Western',
       ],
-      Language: [
-        "en",
-        "es",
-        "fr",
-        "de",
-        "it",
-        "ja",
-        "pt",
-        "ru",
-        "zh",
-        "ko",
-        "hi",
-        "ar",
-      ],
+      Language: ['en', 'es', 'fr', 'de', 'it', 'ja', 'pt', 'ru', 'zh', 'ko', 'hi', 'ar'],
     },
   },
 } as const
-
