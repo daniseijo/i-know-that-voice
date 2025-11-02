@@ -36,17 +36,17 @@ export type Database = {
     Tables: {
       Actor: {
         Row: {
-          id: number
+          id: string
           name: string | null
           profile_path: string | null
         }
         Insert: {
-          id: number
+          id?: string
           name?: string | null
           profile_path?: string | null
         }
         Update: {
-          id?: number
+          id?: string
           name?: string | null
           profile_path?: string | null
         }
@@ -54,22 +54,22 @@ export type Database = {
       }
       Character: {
         Row: {
-          id: number
-          movie_id: number | null
+          id: string
+          movie_id: string | null
           name_in_media: string | null
-          original_actor_id: number | null
+          original_actor_id: string | null
         }
         Insert: {
-          id: number
-          movie_id?: number | null
+          id?: string
+          movie_id?: string | null
           name_in_media?: string | null
-          original_actor_id?: number | null
+          original_actor_id?: string | null
         }
         Update: {
-          id?: number
-          movie_id?: number | null
+          id?: string
+          movie_id?: string | null
           name_in_media?: string | null
-          original_actor_id?: number | null
+          original_actor_id?: string | null
         }
         Relationships: [
           {
@@ -90,9 +90,9 @@ export type Database = {
       }
       Crawl_Status: {
         Row: {
-          entity_id: number | null
+          entity_id: string | null
           entity_type: string | null
-          id: number
+          id: string
           imdb_id: string | null
           letterboxd_id: string | null
           source_url: string | null
@@ -100,9 +100,9 @@ export type Database = {
           tmdb_id: number | null
         }
         Insert: {
-          entity_id?: number | null
+          entity_id?: string | null
           entity_type?: string | null
-          id: number
+          id?: string
           imdb_id?: string | null
           letterboxd_id?: string | null
           source_url?: string | null
@@ -110,9 +110,9 @@ export type Database = {
           tmdb_id?: number | null
         }
         Update: {
-          entity_id?: number | null
+          entity_id?: string | null
           entity_type?: string | null
-          id?: number
+          id?: string
           imdb_id?: string | null
           letterboxd_id?: string | null
           source_url?: string | null
@@ -125,7 +125,7 @@ export type Database = {
         Row: {
           dubbing_languages: string | null
           featured_roles_notes: string | null
-          id: number
+          id: string
           name: string | null
           profile_path: string | null
           skills: string | null
@@ -136,7 +136,7 @@ export type Database = {
         Insert: {
           dubbing_languages?: string | null
           featured_roles_notes?: string | null
-          id: number
+          id?: string
           name?: string | null
           profile_path?: string | null
           skills?: string | null
@@ -147,7 +147,7 @@ export type Database = {
         Update: {
           dubbing_languages?: string | null
           featured_roles_notes?: string | null
-          id?: number
+          id?: string
           name?: string | null
           profile_path?: string | null
           skills?: string | null
@@ -159,19 +159,19 @@ export type Database = {
       }
       Dubbing_Cast: {
         Row: {
-          character_id: number | null
-          dub_actor_id: number | null
-          id: number
+          character_id: string | null
+          dub_actor_id: string | null
+          id: string
         }
         Insert: {
-          character_id?: number | null
-          dub_actor_id?: number | null
-          id: number
+          character_id?: string | null
+          dub_actor_id?: string | null
+          id?: string
         }
         Update: {
-          character_id?: number | null
-          dub_actor_id?: number | null
-          id?: number
+          character_id?: string | null
+          dub_actor_id?: string | null
+          id?: string
         }
         Relationships: [
           {
@@ -196,7 +196,7 @@ export type Database = {
           budget: number | null
           genres: Database["public"]["Enums"]["Genre_Type"][] | null
           homepage_url: string | null
-          id: number
+          id: string
           is_adult: boolean | null
           original_language: Database["public"]["Enums"]["Language"] | null
           original_title: string | null
@@ -215,7 +215,7 @@ export type Database = {
           budget?: number | null
           genres?: Database["public"]["Enums"]["Genre_Type"][] | null
           homepage_url?: string | null
-          id: number
+          id?: string
           is_adult?: boolean | null
           original_language?: Database["public"]["Enums"]["Language"] | null
           original_title?: string | null
@@ -234,7 +234,7 @@ export type Database = {
           budget?: number | null
           genres?: Database["public"]["Enums"]["Genre_Type"][] | null
           homepage_url?: string | null
-          id?: number
+          id?: string
           is_adult?: boolean | null
           original_language?: Database["public"]["Enums"]["Language"] | null
           original_title?: string | null
@@ -252,19 +252,19 @@ export type Database = {
       }
       Movie_Staff: {
         Row: {
-          movie_id: number
+          movie_id: string
           role: string
-          staff_id: number
+          staff_id: string
         }
         Insert: {
-          movie_id: number
+          movie_id: string
           role: string
-          staff_id: number
+          staff_id: string
         }
         Update: {
-          movie_id?: number
+          movie_id?: string
           role?: string
-          staff_id?: number
+          staff_id?: string
         }
         Relationships: [
           {
@@ -285,16 +285,16 @@ export type Database = {
       }
       Regular_Voice_Assignments: {
         Row: {
-          dub_actor_id: number
-          original_actor_id: number
+          dub_actor_id: string
+          original_actor_id: string
         }
         Insert: {
-          dub_actor_id: number
-          original_actor_id: number
+          dub_actor_id: string
+          original_actor_id: string
         }
         Update: {
-          dub_actor_id?: number
-          original_actor_id?: number
+          dub_actor_id?: string
+          original_actor_id?: string
         }
         Relationships: [
           {
@@ -315,17 +315,17 @@ export type Database = {
       }
       Staff: {
         Row: {
-          id: number
+          id: string
           name: string | null
           profile_path: string | null
         }
         Insert: {
-          id: number
+          id?: string
           name?: string | null
           profile_path?: string | null
         }
         Update: {
-          id?: number
+          id?: string
           name?: string | null
           profile_path?: string | null
         }
