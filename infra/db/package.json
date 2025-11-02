@@ -1,0 +1,23 @@
+{
+  "name": "@iktv/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase db push",
+    "db:diff": "supabase db diff -f",
+    "db:status": "supabase status",
+    "db:generate-types": "supabase gen types typescript --local > src/types.ts",
+    "db:generate-types:prod": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types.ts"
+  },
+  "devDependencies": {
+    "supabase": "^2.54.11",
+    "typescript": "catalog:"
+  }
+}
