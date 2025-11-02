@@ -4,3 +4,8 @@ pre-commit:
     biome:
       glob: "*.{js,ts,jsx,tsx,json}"
       run: bunx biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --staged {staged_files}
+      stage_fixed: true
+      env:
+        # Colors are disabled to ensure visual clarity in CI
+        FORCE_COLOR: "0"
+        NO_COLOR: "1"
