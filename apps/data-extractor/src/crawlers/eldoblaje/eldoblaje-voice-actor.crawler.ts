@@ -1,7 +1,7 @@
-import { CheerioCrawlingContext } from 'crawlee'
+import type { CheerioAPI } from 'cheerio'
+import type { CheerioCrawlingContext } from 'crawlee'
+import type { VoiceActor } from '../movie.types'
 import { extractRowInfo, formatActorName } from './eldoblaje-common.utils'
-import { CheerioAPI } from 'cheerio'
-import { VoiceActor } from '../movie.types'
 
 export function extractVoiceActorData(crawlingContext: CheerioCrawlingContext): VoiceActor {
   const { request, $ } = crawlingContext

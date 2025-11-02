@@ -1,11 +1,11 @@
 'use client'
 
-import { getMovies } from '@/app/actions/get-movies'
+import { Loader2Icon } from 'lucide-react'
 
 import useSWR from 'swr'
-import { MovieSearchFragment } from './movie-search-fragment'
+import { getMovies } from '@/app/actions/get-movies'
 import { CommandEmpty, CommandItem } from '@/components/ui/command'
-import { Loader2Icon } from 'lucide-react'
+import { MovieSearchFragment } from './movie-search-fragment'
 
 const MINIMUM_QUERY_LENGTH = 3
 

@@ -1,4 +1,4 @@
-import { Poster } from './poster'
+import type { Poster } from './poster'
 
 export type Movie = {
   id: number

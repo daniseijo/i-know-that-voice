@@ -1,9 +1,9 @@
 'use client'
 
+import { useDebounce } from '@uidotdev/usehooks'
+import { useState } from 'react'
 import { Command, CommandInput, CommandList } from '@/components/ui/command'
 import { cn } from '@/lib/utils'
-import { useState } from 'react'
-import { useDebounce } from '@uidotdev/usehooks'
 import { MovieCommandItems } from './movie-command-items'
 
 export type MovieSearchBarProps = {

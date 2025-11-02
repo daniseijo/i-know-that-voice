@@ -1,8 +1,8 @@
 'use server'
 
-import { Movie, MovieDto, Poster, ResponseDto } from '@/types'
 import wretch from 'wretch'
 import { queryStringAddon } from 'wretch/addons'
+import type { Movie, MovieDto, Poster, ResponseDto } from '@/types'
 
 const tmdbApi = wretch(process.env.TMDB_BASE_URL).auth(`Bearer ${process.env.TMDB_API_KEY}`).addon(queryStringAddon)
 

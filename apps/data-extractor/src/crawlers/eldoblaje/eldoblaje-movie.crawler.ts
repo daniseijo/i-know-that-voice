@@ -1,8 +1,8 @@
-import { CheerioCrawlingContext } from 'crawlee'
-import { DubbedMovie } from '../movie.types'
-import { Cheerio, CheerioAPI, Element } from 'cheerio'
-import { getVoiceActorId } from './eldoblaje-voice-actor.crawler'
+import type { Cheerio, CheerioAPI, Element } from 'cheerio'
+import type { CheerioCrawlingContext } from 'crawlee'
+import type { DubbedMovie } from '../movie.types'
 import { extractRowInfo, formatActorName } from './eldoblaje-common.utils'
+import { getVoiceActorId } from './eldoblaje-voice-actor.crawler'
 
 export function extractMoviePageData(crawlingContext: CheerioCrawlingContext): DubbedMovie {
   const { request, $ } = crawlingContext
