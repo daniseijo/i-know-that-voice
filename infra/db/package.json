@@ -7,7 +7,9 @@
     "./types": "./src/types.ts"
   },
   "scripts": {
-    "db:start": "supabase start",
+    "infra:start": "bun run db:start",
+    "infra:stop": "bun run db:stop",
+    "db:start": "supabase start --experimental",
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:migrate": "supabase db push",
