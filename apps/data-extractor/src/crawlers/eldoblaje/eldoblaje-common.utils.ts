@@ -1,3 +1,5 @@
+import { CheerioAPI } from 'cheerio'
+
 export function formatActorName(name: string): string {
   const formattedName = capitalizeWords(name)
   const [lastName, firstName] = formattedName.split(',').map((part) => part.trim())
@@ -19,4 +21,21 @@ export function capitalizeWords(sentence: string): string {
     .split(' ')
     .map((word) => word.replace(capitalizeRegex, (_, p1, p2, p3) => p1 + p2.toUpperCase() + p3.toLowerCase()))
     .join(' ')
+}
+
+// Is this really the most clean way of doing this? Seems awkward
+export function extractRowInfo($: CheerioAPI, className: string, regexOrString: RegExp | string) {
+  return $(className)
+    .filter(function () {
+      if (typeof regexOrString === 'string') {
+        return $(this).text().includes(regexOrString)
+      } else {
+        return regexOrString.test($(this).text())
+      }
+    })
+    .first()
+    .text()
+    .split(':')
+    .pop()
+    ?.trim()
 }
