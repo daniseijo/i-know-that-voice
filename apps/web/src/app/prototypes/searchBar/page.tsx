@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Search, Film, User, Mic, X, Clock } from 'lucide-react'
+import { Clock, Film, Mic, Search, User, X } from 'lucide-react'
+import { useState } from 'react'
 
 // Datos de ejemplo para autocompletado
 const mockSuggestions = {
@@ -22,9 +22,17 @@ const mockSuggestions = {
   ],
 }
 
-const mockTrending = ['Dune 2', 'Oppenheimer', 'Luis Bajo']
+const mockTrending = [
+  { id: 1, title: 'Dune 2' },
+  { id: 2, title: 'Oppenheimer' },
+  { id: 3, title: 'Luis Bajo' },
+]
 
-const mockRecent = ['Inception', 'Salvador Aldeguer', 'The Matrix']
+const mockRecent = [
+  { id: 1, title: 'Inception' },
+  { id: 2, title: 'Salvador Aldeguer' },
+  { id: 3, title: 'The Matrix' },
+]
 
 // Concepto 1: Búsqueda Simple con Sugerencias
 const SearchConcept1 = () => {
@@ -46,6 +54,7 @@ const SearchConcept1 = () => {
           />
           {query && (
             <button
+              type="button"
               onClick={() => setQuery('')}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >
@@ -62,25 +71,26 @@ const SearchConcept1 = () => {
                   <p className="text-xs font-semibold text-gray-500 uppercase">Búsquedas recientes</p>
                 </div>
                 <div className="py-2">
-                  {mockRecent.map((item, i) => (
+                  {mockRecent.map(({ id, title }) => (
                     <button
-                      key={i}
+                      type="button"
+                      key={id}
                       className="w-full px-4 py-2 flex items-center gap-3 hover:bg-purple-50 transition-colors text-left"
                     >
                       <Clock className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-gray-700">{title}</span>
                     </button>
                   ))}
                 </div>
                 <div className="border-t border-gray-200 p-3 bg-gray-50">
                   <p className="text-xs font-semibold text-gray-500 uppercase mb-2">Tendencias</p>
                   <div className="flex flex-wrap gap-2">
-                    {mockTrending.map((item, i) => (
+                    {mockTrending.map(({ id, title }) => (
                       <span
-                        key={i}
+                        key={id}
                         className="px-3 py-1 bg-white rounded-full text-sm text-gray-700 border border-gray-200 cursor-pointer hover:border-purple-300 transition-colors"
                       >
-                        {item}
+                        {title}
                       </span>
                     ))}
                   </div>
@@ -93,6 +103,7 @@ const SearchConcept1 = () => {
                 </div>
                 {mockSuggestions.movies.map((movie) => (
                   <button
+                    type="button"
                     key={movie.id}
                     className="w-full px-4 py-3 flex items-center gap-3 hover:bg-purple-50 transition-colors text-left border-b border-gray-100"
                   >
@@ -111,6 +122,7 @@ const SearchConcept1 = () => {
                 </div>
                 {mockSuggestions.voiceActors.map((va) => (
                   <button
+                    type="button"
                     key={va.id}
                     className="w-full px-4 py-3 flex items-center justify-between hover:bg-purple-50 transition-colors text-left border-b border-gray-100"
                   >
@@ -127,6 +139,7 @@ const SearchConcept1 = () => {
                 </div>
                 {mockSuggestions.actors.map((actor) => (
                   <button
+                    type="button"
                     key={actor.id}
                     className="w-full px-4 py-3 flex items-center gap-3 hover:bg-purple-50 transition-colors text-left"
                   >
@@ -176,6 +189,7 @@ const SearchConcept2 = () => {
             const Icon = tab.icon
             return (
               <button
+                type="button"
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -198,6 +212,7 @@ const SearchConcept2 = () => {
                 </div>
                 {mockSuggestions.movies.map((movie) => (
                   <button
+                    type="button"
                     key={movie.id}
                     className="w-full px-4 py-3 flex items-center gap-3 hover:bg-purple-50 transition-colors text-left border-b border-gray-100"
                   >
@@ -216,6 +231,7 @@ const SearchConcept2 = () => {
                 </div>
                 {mockSuggestions.voiceActors.map((va) => (
                   <button
+                    type="button"
                     key={va.id}
                     className="w-full px-4 py-3 flex items-center justify-between hover:bg-purple-50 transition-colors text-left"
                   >
@@ -238,12 +254,12 @@ const SearchConcept2 = () => {
 // Concepto 3: Búsqueda Minimalista con Tags
 const SearchConcept3 = () => {
   const [query, setQuery] = useState('')
-  const [selectedTags, setSelectedTags] = useState([])
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
 
   const popularTags = ['Acción', 'Animación', 'DiCaprio', 'Luis Bajo', '2024']
 
-  const toggleTag = (tag) => {
+  const toggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
       setSelectedTags(selectedTags.filter((t) => t !== tag))
     } else {
@@ -256,7 +272,7 @@ const SearchConcept3 = () => {
       <div className="relative">
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4">
           <div className="flex items-center gap-3 mb-3">
-            <Search className="text-gray-400 w-5 h-5 flex-shrink-0" />
+            <Search className="text-gray-400 w-5 h-5 shrink-0" />
             <input
               type="text"
               placeholder="Buscar..."
@@ -266,7 +282,7 @@ const SearchConcept3 = () => {
               className="flex-1 text-lg focus:outline-none"
             />
             {query && (
-              <button onClick={() => setQuery('')} className="text-gray-400 hover:text-gray-600">
+              <button type="button" onClick={() => setQuery('')} className="text-gray-400 hover:text-gray-600">
                 <X className="w-5 h-5" />
               </button>
             )}
@@ -274,13 +290,13 @@ const SearchConcept3 = () => {
 
           {selectedTags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-3 pb-3 border-b border-gray-200">
-              {selectedTags.map((tag, i) => (
+              {selectedTags.map((tag) => (
                 <span
-                  key={i}
+                  key={tag}
                   className="flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
                 >
                   {tag}
-                  <button onClick={() => toggleTag(tag)} className="hover:bg-purple-200 rounded-full">
+                  <button type="button" onClick={() => toggleTag(tag)} className="hover:bg-purple-200 rounded-full">
                     <X className="w-3 h-3" />
                   </button>
                 </span>
@@ -291,9 +307,10 @@ const SearchConcept3 = () => {
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-500">Popular:</span>
             <div className="flex flex-wrap gap-2">
-              {popularTags.map((tag, i) => (
+              {popularTags.map((tag) => (
                 <button
-                  key={i}
+                  type="button"
+                  key={tag}
                   onClick={() => toggleTag(tag)}
                   className={`px-2 py-1 rounded-full text-xs transition-colors ${
                     selectedTags.includes(tag)
@@ -312,6 +329,7 @@ const SearchConcept3 = () => {
           <div className="absolute w-full mt-2 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden z-10">
             {mockSuggestions.movies.slice(0, 2).map((movie) => (
               <button
+                type="button"
                 key={movie.id}
                 className="w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left border-b border-gray-100"
               >
@@ -324,6 +342,7 @@ const SearchConcept3 = () => {
             ))}
             {mockSuggestions.voiceActors.slice(0, 2).map((va) => (
               <button
+                type="button"
                 key={va.id}
                 className="w-full px-4 py-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left"
               >
@@ -346,7 +365,7 @@ const SearchConcept3 = () => {
 // Concepto 4: Búsqueda con Vista Previa
 const SearchConcept4 = () => {
   const [query, setQuery] = useState('')
-  const [hoveredItem, setHoveredItem] = useState(null)
+  const [hoveredItem, setHoveredItem] = useState<null | Record<string, string | number>>(null)
   const [showSuggestions, setShowSuggestions] = useState(false)
 
   return (
@@ -369,14 +388,15 @@ const SearchConcept4 = () => {
         {showSuggestions && query && (
           <div className="absolute w-full mt-2 bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden z-10 flex">
             <div className="flex-1 border-r border-gray-200">
-              <div className="p-3 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-200">
+              <div className="p-3 bg-linear-to-r from-blue-50 to-purple-50 border-b border-gray-200">
                 <p className="text-xs font-semibold text-gray-700">RESULTADOS</p>
               </div>
               <div className="max-h-96 overflow-y-auto">
                 {mockSuggestions.movies.map((movie) => (
                   <button
+                    type="button"
                     key={movie.id}
-                    onMouseEnter={() => setHoveredItem({ type: 'movie', ...movie })}
+                    onMouseEnter={() => setHoveredItem(movie)}
                     className={`w-full px-4 py-3 flex items-center gap-3 transition-colors text-left border-b border-gray-100 ${
                       hoveredItem?.id === movie.id && hoveredItem?.type === 'movie'
                         ? 'bg-purple-50'
@@ -392,8 +412,9 @@ const SearchConcept4 = () => {
                 ))}
                 {mockSuggestions.voiceActors.map((va) => (
                   <button
+                    type="button"
                     key={va.id}
-                    onMouseEnter={() => setHoveredItem({ type: 'voice', ...va })}
+                    onMouseEnter={() => setHoveredItem(va)}
                     className={`w-full px-4 py-3 flex items-center gap-3 transition-colors text-left border-b border-gray-100 ${
                       hoveredItem?.id === va.id && hoveredItem?.type === 'voice' ? 'bg-purple-50' : 'hover:bg-gray-50'
                     }`}
@@ -408,7 +429,7 @@ const SearchConcept4 = () => {
               </div>
             </div>
 
-            <div className="w-80 bg-gradient-to-br from-purple-50 to-blue-50 p-4">
+            <div className="w-80 bg-linear-to-br from-purple-50 to-blue-50 p-4">
               {hoveredItem ? (
                 <div>
                   <div className="text-5xl mb-3">{hoveredItem.type === 'movie' ? '🎬' : '🎙️'}</div>
@@ -459,11 +480,11 @@ const App = () => {
     { id: 4, name: 'Con Vista Previa', component: SearchConcept4 },
   ]
 
-  const ActiveComponent = concepts.find((c) => c.id === activeConcept).component
+  const ActiveComponent = concepts.find((c) => c.id === activeConcept)?.component
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50">
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 shadow-lg mb-8">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-purple-50">
+      <div className="bg-linear-to-r from-purple-600 to-blue-600 text-white p-6 shadow-lg mb-8">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-3xl font-bold mb-2">Conceptos de Búsqueda</h1>
           <p className="text-purple-100">Explora diferentes diseños de barra de búsqueda</p>
@@ -476,6 +497,7 @@ const App = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {concepts.map((concept) => (
               <button
+                type="button"
                 key={concept.id}
                 onClick={() => setActiveConcept(concept.id)}
                 className={`px-4 py-3 rounded-lg font-medium text-sm transition-all ${
@@ -511,7 +533,7 @@ const App = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
-            <ActiveComponent />
+            {ActiveComponent && <ActiveComponent />}
           </div>
         </div>
 

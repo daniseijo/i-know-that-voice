@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { User, Mic, ChevronRight, Star } from 'lucide-react'
+import { ChevronRight, Mic, Star, User } from 'lucide-react'
+import { useState } from 'react'
 
 // Datos de ejemplo
 const mockData = {
@@ -73,7 +73,7 @@ const Interface1_Integrated = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 mb-4">
+      <div className="bg-linear-to-r from-blue-50 to-purple-50 rounded-lg p-6 mb-4">
         <div className="flex items-start gap-6">
           <div className="text-6xl">{mockData.movie.poster}</div>
           <div className="flex-1">
